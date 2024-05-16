@@ -23,7 +23,7 @@ export default function RootLayout({
             >
                 <Header />
 
-                <div className="text-white">{children}</div>
+                <div className="text-white ">{children}</div>
             </body>
         </html>
     );

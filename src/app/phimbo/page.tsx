@@ -54,9 +54,10 @@ export default function Phimbo() {
     return (
         <div className="flex justify-center">
             <div className="w-[1000px]">
+                <p className="px-5 py-3">Trang: {page}</p>
                 {loading ? <CardDataSkeleton /> : <CardData data={data} />}
 
-                <Pagination className="mt-4">
+                <Pagination className="my-5 ">
                     <PaginationContent>
                         <PaginationItem>
                             <PaginationPrevious
@@ -68,7 +69,7 @@ export default function Phimbo() {
                         <PaginationItem>
                             <PaginationLink
                                 isActive
-                                className="text-gray-700  font-bold cursor-pointer"
+                                className="text-gray-700  font-bold cursor-pointer mx-3"
                             >
                                 {page}
                             </PaginationLink>
