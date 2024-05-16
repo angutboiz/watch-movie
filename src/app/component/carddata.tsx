@@ -5,14 +5,13 @@ import Link from "next/link";
 export default function CardData(props: any) {
     const data = props.data;
     return (
-        <div className="flex flex-wrap justify-between items-center px-3 md:p-0">
+        <div className="flex flex-wrap justify-between items-center px-3 md:px-0">
             {data.map((item: any, index: any) => (
                 <Link
                     href={`phim/${item.slug}`}
-                    className="flex items-center justify-center w-[200px] hover:text-gray-300 mt-3"
-                    key={index}
-                >
-                    <div className=" w-[100%]">
+                    className="flex items-center justify-center w-[200px] md:w-[19%] hover:text-gray-300 mt-3"
+                    key={index}>
+                    <div className=" w-[100%] ">
                         <div className="h-[250px] overflow-hidden rounded-md relative">
                             <Image
                                 src={`https://img.phimapi.com/${item.poster_url}`}

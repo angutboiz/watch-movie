@@ -149,7 +149,8 @@ export default function Phim({ params }: { params: { slug: string } }) {
                                                     value={item.link_embed}
                                                     disabled={
                                                         index == uindex &&
-                                                        item.name != "Full"
+                                                        item.name != "Full" &&
+                                                        item.name != "Tập 01"
                                                     }
                                                     onClick={(e: any) =>
                                                         handleButton(
