@@ -12,7 +12,7 @@ import DetailSkeleton from "@/app/component/detailskeleton";
 export default function Phim({ params }: { params: { slug: string } }) {
     var { slug } = params;
 
-    const [movie, setMovie] = useState([]);
+    const [movie, setMovie] = useState<any>([]);
     const [uindex, setuIndex] = useState(0);
     const [data, setData] = useState<any>([]);
     const [loading, setLoading] = useState(false);
