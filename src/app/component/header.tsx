@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import { Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 export default function Header() {
@@ -13,10 +13,10 @@ export default function Header() {
     return (
         <div className="block h-[60px] text-white ">
             <div className="fixed w-full ">
-                <div className="flex justify-center bg-[#333333]">
-                    <div className="w-[1000px]  flex gap-5 justify-between items-center">
+                <div className="md:flex justify-center bg-[#333333] p-3 md:p-0">
+                    <div className="md:w-[1000px] flex gap-5 justify-between items-center">
                         <div className="text-3xl">Watch Movie</div>
-                        <div className="">
+                        <div className="hidden md:block">
                             <ul className="flex items-center gap-5">
                                 {hide ? (
                                     ""
@@ -120,6 +120,9 @@ export default function Header() {
                                     </>
                                 )}
                             </ul>
+                        </div>
+                        <div className="block md:hidden">
+                            <Menu></Menu>
                         </div>
                     </div>
                 </div>

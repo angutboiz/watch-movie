@@ -19,7 +19,7 @@ export default async function Home() {
         <div className="flex justify-center">
             <div className="w-[1000px]">
                 <div className="">Xem phim mới cập nhật</div>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap justify-between px-3 md:p-0">
                     {data.items.map((item: any, index: any) => (
                         <Link
                             href={`phim/${item.slug}`}
