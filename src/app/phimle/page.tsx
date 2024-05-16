@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Home() {
+export default async function Phimle() {
     async function getData() {
         const res = await fetch(
-            "https://phimapi.com/danh-sach/phim-moi-cap-nhat?page=1"
+            "https://phimapi.com/v1/api/danh-sach/phim-le?page=1"
         );
 
         if (!res.ok) {
@@ -18,9 +18,9 @@ export default async function Home() {
     return (
         <div className="flex justify-center">
             <div className="w-[1000px]">
-                <div className="">Xem phim mới cập nhật</div>
+                <div className="">Phim bộ</div>
                 <div className="flex flex-wrap">
-                    {data.items.map((item: any, index: any) => (
+                    {data.data.items.map((item: any, index: any) => (
                         <Link
                             href={`phim/${item.slug}`}
                             className="flex w-[200px] hover:text-red-700 mt-3"
@@ -29,7 +29,7 @@ export default async function Home() {
                             <div className="">
                                 <div className="w-[180px] h-[250px] overflow-hidden rounded-md relative">
                                     <Image
-                                        src={item.poster_url}
+                                        src={`https://img.phimapi.com/${item.poster_url}`}
                                         alt=""
                                         fill
                                         className="absolute hover:scale-125 duration-500"
