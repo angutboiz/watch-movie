@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import type { Metadata } from "next";
-
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -48,6 +48,15 @@ export default function Phim({ params }: { params: { slug: string } }) {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, [uindex]);
 
+    function handleDesc() {
+        setuIndex(uindex - 1);
+        if (uindex < 1) setuIndex(0);
+    }
+
+    function handleInc() {
+        setuIndex(uindex + 1);
+    }
+
     return (
         <div className="">
             <div className="flex justify-center">
@@ -77,6 +86,15 @@ export default function Phim({ params }: { params: { slug: string } }) {
                                 <div className="">
                                     Server đang chọn:{" "}
                                     {data.episodes[0].server_name}
+                                </div>
+                                <div className="flex gap-5 justify-center">
+                                    <Button onClick={() => handleDesc()}>
+                                        <ChevronLeft />
+                                        Tập trước đó
+                                    </Button>
+                                    <Button onClick={() => handleInc()}>
+                                        Tập tiếp theo <ChevronRight />
+                                    </Button>
                                 </div>
                                 <div className="mt-5">
                                     <div className="flex gap-5">
