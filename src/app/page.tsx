@@ -23,7 +23,7 @@ export default async function Home() {
                     {data.items.map((item: any, index: any) => (
                         <Link
                             href={`phim/${item.slug}`}
-                            className="flex w-[200px] hover:text-red-700 mt-3"
+                            className="flex w-[200px] hover:text-gray-300 mt-3"
                             key={index}
                         >
                             <div className="">

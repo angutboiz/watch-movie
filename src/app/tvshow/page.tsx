@@ -16,14 +16,14 @@ import { useEffect, useState } from "react";
 import CardData from "../component/carddata";
 import CardDataSkeleton from "../component/carddataskeleton";
 
-export default function Phimle() {
+export default function TVShow() {
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const getData = async () => {
         const res = await fetch(
-            `https://phimapi.com/v1/api/danh-sach/phim-le?page=${page}`
+            `https://phimapi.com/v1/api/danh-sach/tv-shows?page=${page}`
         );
 
         return res.json();

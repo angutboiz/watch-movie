@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 import {
     Pagination,
@@ -10,70 +12,72 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useEffect, useState } from "react";
+import CardData from "../component/carddata";
+import CardDataSkeleton from "../component/carddataskeleton";
 
-export default async function Phimbo() {
-    async function getData() {
+export default function Phimbo() {
+    const [page, setPage] = useState(1);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const getData = async () => {
         const res = await fetch(
-            "https://phimapi.com/v1/api/danh-sach/phim-bo?page=1"
+            `https://phimapi.com/v1/api/danh-sach/phim-bo?page=${page}`
         );
 
-        if (!res.ok) {
-            throw new Error("Failed to fetch data");
-        }
-
         return res.json();
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const result = await getData();
+                setData(result.data.items);
+            } catch (err) {
+                new Error("not data");
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, [page]);
+
+    function handleDesc() {
+        setPage(page - 1);
+        if (page < 2) {
+            setPage(1);
+        }
     }
 
-    const data = await getData();
     return (
         <div className="flex justify-center">
             <div className="w-[1000px]">
-                <div className="">Phim bộ</div>
-                <div className="flex flex-wrap">
-                    {data.data.items.map((item: any, index: any) => (
-                        <Link
-                            href={`phim/${item.slug}`}
-                            className="flex w-[200px] hover:text-red-700 mt-3"
-                            key={index}
-                        >
-                            <div className="">
-                                <div className="w-[180px] h-[250px] overflow-hidden rounded-md relative">
-                                    <Image
-                                        src={`https://img.phimapi.com/${item.poster_url}`}
-                                        alt=""
-                                        fill
-                                        className="absolute hover:scale-125 duration-500"
-                                    />
-                                </div>
-                                <h1 className="text-md mt-1">{item.name}</h1>
-                                <p className="text-gray-500 text-[15px]">
-                                    {item.year}
-                                </p>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-                <Pagination>
+                {loading ? <CardDataSkeleton /> : <CardData data={data} />}
+
+                <Pagination className="mt-4">
                     <PaginationContent>
                         <PaginationItem>
-                            <PaginationPrevious href="#" />
+                            <PaginationPrevious
+                                className="cursor-pointer bg-orange-700 w-[100px]"
+                                onClick={() => handleDesc()}
+                            />
                         </PaginationItem>
+
                         <PaginationItem>
-                            <PaginationLink href="#">1</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationLink href="#" isActive>
-                                2
+                            <PaginationLink
+                                isActive
+                                className="text-gray-700  font-bold cursor-pointer"
+                            >
+                                {page}
                             </PaginationLink>
                         </PaginationItem>
                         <PaginationItem>
-                            <PaginationLink href="#">3</PaginationLink>
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationEllipsis />
-                        </PaginationItem>
-                        <PaginationItem>
-                            <PaginationNext href="#" />
+                            <PaginationNext
+                                className="cursor-pointer bg-orange-700 w-[100px]"
+                                onClick={() => setPage(page + 1)}
+                            />
                         </PaginationItem>
                     </PaginationContent>
                 </Pagination>

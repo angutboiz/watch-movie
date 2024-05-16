@@ -19,7 +19,6 @@ export default async function Phim({ params }: { params: { slug: string } }) {
     }
 
     const data = await getData();
-    console.log(data);
     return (
         <div className="">
             <div className="flex justify-center">
