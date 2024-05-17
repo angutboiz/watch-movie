@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Pacifico } from "next/font/google";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
+import apiService from "@/lib/apiservice";
 
 const pacifico = Pacifico({ subsets: ["latin"], weight: "400" });
 
@@ -38,10 +39,8 @@ export default function Header() {
             if (value) {
                 setLoading(true);
                 try {
-                    const res = await fetch(`https://phimapi.com/v1/api/tim-kiem?keyword=${value}&limit=7`);
-                    const data = await res.json();
-                    setResults(data.data.items);
-                    console.log(data.data.items);
+                    const result = await apiService.get(`https://phimapi.com/v1/api/tim-kiem?keyword=${value}&limit=7`);
+                    setResults(result.data.items);
                 } catch (error) {
                     console.error("Error fetching search results: ", error);
                 } finally {
@@ -55,7 +54,7 @@ export default function Header() {
     );
 
     return (
-        <div className="block h-[60px] text-white relative z-10">
+        <div className="block h-[60px] text-white relative z-50">
             <div className="fixed w-full ">
                 <div className="md:flex justify-center bg-[#333333] p-3 md:p-0">
                     <div className="md:w-[1000px] flex gap-5 justify-between items-center">

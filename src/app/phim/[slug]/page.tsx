@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import DetailSkeleton from "@/app/component/detailskeleton";
+import apiService from "@/lib/apiservice";
 
 export default function Phim({ params }: { params: { slug: string } }) {
     var { slug } = params;
@@ -17,25 +18,20 @@ export default function Phim({ params }: { params: { slug: string } }) {
     const [loading, setLoading] = useState(false);
     const [click, setClick] = useState(false);
 
-    const getData = async () => {
-        const res = await fetch(`https://phimapi.com/phim/${slug}`);
-        return res.json();
-    };
-
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await getData();
+                const result = await apiService.get(`https://phimapi.com/phim/${slug}`);
                 setData(result);
             } catch (err) {
-                new Error("not data");
+                console.error("Error fetching data:", err);
             } finally {
                 setLoading(false);
             }
         };
         fetchData();
-    }, []);
+    }, [data]);
 
     function handleButton(value: any, index: any) {
         setMovie(data.episodes[0].server_data);
@@ -80,7 +76,7 @@ export default function Phim({ params }: { params: { slug: string } }) {
                             <div className="my-3 ">
                                 {movie[uindex] && <iframe src={movie[uindex].link_embed} allowFullScreen allow="autoplay" className="w-[100%] h-[300px] md:w-[1000px] md:h-[500px]" />}
                             </div>
-                            <div className="px-5">
+                            <div className="px-5 md:px-0">
                                 <div className="">Server đang chọn: {data.episodes[0].server_name}</div>
                                 <div className="flex gap-5 justify-center">
                                     <Button onClick={() => handleDesc()}>
@@ -91,29 +87,50 @@ export default function Phim({ params }: { params: { slug: string } }) {
                                         Tập tiếp theo <ChevronRight />
                                     </Button>
                                 </div>
-                                <div className="mt-5">
-                                    <div className="flex gap-5">
+                                <div className="mt-5 relative">
+                                    <Image src={data.movie.thumb_url} alt="" fill className="absolute z-0 object-cover brightness-[.35]" />
+                                    <div className="flex gap-2 md:gap-5 z-10 relative">
                                         <Image src={data.movie.poster_url} width={150} height={200} alt="" className="object-cover" />
-                                        <div className="">
-                                            <h1 className="text-2xl">{data.movie.name}</h1>
-                                            <h1 className="text-lg text-gray-600 mb-3">{data.movie.origin_name}</h1>
-                                            <div className="text-gray-400 flex gap-3 flex-wrap">
-                                                <p>Ngày đăng: {new Date(data.movie.modified.time).toLocaleDateString("vi-VI")}</p>
-                                                <p>Thời lượng: {data.movie.time}</p>
-                                                <p className="bg-blue-300 px-1 text-blue-600">{data.movie.quality}</p>
-                                                <p className="flex gap-2">
-                                                    Tình trạng phim:
-                                                    <p className="bg-blue-300 px-1 text-blue-600">{data.movie.episode_current}</p>
-                                                </p>
-                                            </div>
-                                            <div className="flex gap-2 my-2 text-gray-400 flex-wrap">
-                                                <p>Thể loại phim: </p>
-                                                {data.movie.category.map((item: any, index: any) => (
-                                                    <p key={index}>{item.name}</p>
-                                                ))}
-                                            </div>
-                                            <div className="text-gray-400">
-                                                <p>Nước sản xuất: {data.movie.country[0].name}</p>
+                                        <div className="py-2">
+                                            <div className="">
+                                                <div className="flex gap-3 items-center flex-wrap">
+                                                    <div className="flex gap-2">
+                                                        <p className="bg-blue-600 px-2 py-1 rounded-md">{data.movie.quality}</p>
+                                                        <p className="bg-blue-600 px-2 py-1 rounded-md">{data.movie.lang}</p>
+                                                    </div>
+                                                    <h1 className="text-lg md:text-2xl">{data.movie.name}</h1>
+                                                </div>
+                                                <h1 className="text-md text-gray-300 mb-3">{data.movie.origin_name}</h1>
+                                                <div className="flex justify-between md:gap-5 flex-wrap">
+                                                    <div className="text-gray-300 flex gap-3 flex-wrap flex-col">
+                                                        <div className="flex flex-wrap items-center gap-2">
+                                                            <p>Ngày đăng: </p>
+                                                            <p className="bg-orange-600 text-white px-2 py-1 rounded-md">{new Date(data.movie.modified.time).toLocaleDateString("vi-VI")}</p>
+                                                        </div>
+                                                        <div className="flex flex-wrap items-center gap-2">
+                                                            <p>Thời lượng:</p>
+                                                            <p className="bg-orange-600 text-white px-2 py-1 rounded-md">{data.movie.time}</p>
+                                                        </div>
+                                                        <div className="flex flex-wrap items-center gap-2">
+                                                            <p className="">Tình trạng phim:</p>
+                                                            <p className="bg-orange-600 text-white px-2 py-1 rounded-md">{data.movie.episode_current}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="">
+                                                        <div className="flex items-center gap-2 my-2 text-gray-300 flex-wrap">
+                                                            <p>Thể loại phim: </p>
+                                                            {data.movie.category.map((item: any, index: any) => (
+                                                                <label className="bg-orange-600 text-white px-2 py-1 rounded-md" key={index}>
+                                                                    {item.name}
+                                                                </label>
+                                                            ))}
+                                                        </div>
+                                                        <div className="flex flex-wrap items-center gap-2">
+                                                            <p>Nước sản xuất: </p>
+                                                            <p className="bg-orange-600 text-white px-2 py-1 rounded-md">{data.movie.country[0].name}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

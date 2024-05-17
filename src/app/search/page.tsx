@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import CardData from "../component/carddata";
 import CardDataSkeleton from "../component/carddataskeleton";
 import { Input } from "@/components/ui/input";
+import apiService from "@/lib/apiservice";
 
 export default function Search() {
     const [page, setPage] = useState(1);
@@ -40,10 +41,8 @@ export default function Search() {
             if (value) {
                 setLoading(true);
                 try {
-                    const res = await fetch(`https://phimapi.com/v1/api/tim-kiem?keyword=${value}`);
-                    const data = await res.json();
-                    setResults(data.data.items);
-                    console.log(data.data.items);
+                    const result = await apiService.get(`https://phimapi.com/v1/api/tim-kiem?keyword=${value}&limit=7`);
+                    setResults(result.data.items);
                 } catch (error) {
                     console.error("Error fetching search results: ", error);
                 } finally {

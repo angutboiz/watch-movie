@@ -8,7 +8,7 @@ export default function CardData(props: any) {
         <div className="flex flex-wrap justify-between items-center px-3 md:px-0">
             {Object.keys(data).length > 0 ? (
                 data.map((item: any, index: any) => (
-                    <Link href={`phim/${item.slug}`} className="flex items-center justify-center w-[200px] md:w-[19%] hover:text-gray-300 mt-3" key={index}>
+                    <Link href={`phim/${item.slug}`} className="flex items-center justify-center w-[48%] md:w-[19%] hover:text-gray-300 mt-3" key={index}>
                         <div className=" w-[100%] ">
                             <div className="h-[250px] overflow-hidden rounded-md relative">
                                 <Image src={`https://img.phimapi.com/${item.poster_url}`} alt="" fill className="absolute hover:scale-125 duration-500 object-cover" />
