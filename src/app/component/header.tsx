@@ -122,8 +122,8 @@ export default function Header() {
                                                                                 className="object-cover rounded-md "
                                                                             />
                                                                             <a href={`/phim/${item.slug}`} className="result-link ">
-                                                                                <p>{item.name}</p>
-                                                                                <p className="text-sm text-gray-500 group-hover:text-green-200">{item.origin_name}</p>
+                                                                                <p className="line-clamp-1">{item.name}</p>
+                                                                                <p className="text-sm text-gray-500 group-hover:text-green-200 line-clamp-1">{item.origin_name}</p>
                                                                                 <p className="text-sm text-gray-500 group-hover:text-green-200">{item.year}</p>
                                                                             </a>
                                                                         </li>
@@ -157,7 +157,11 @@ export default function Header() {
                                 )}
                             </ul>
                         </div>
-                        <div className="block md:hidden">
+
+                        <div className="flex items-center md:hidden ">
+                            <Link className="block px-5 py-2" href="/search">
+                                <Search size={20}></Search>
+                            </Link>
                             <Sheet>
                                 <SheetTrigger asChild>
                                     <Menu></Menu>

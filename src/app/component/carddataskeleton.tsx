@@ -6,12 +6,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function CardDataSkeleton() {
     const array = Array.from({ length: 10 }, (_, index) => index + 1);
     return (
-        <div className="flex flex-wrap w-full justify-between">
+        <div className="flex flex-wrap justify-between items-center px-3 md:px-0">
             {array.map((item: any, index: any) => (
-                <Skeleton
-                    className="flex w-[19%]   mt-3 bg-[#2d2d2d]"
-                    key={index}
-                >
+                <Skeleton className="flex items-center justify-center w-[200px] md:w-[19%] hover:text-gray-300 mt-3 bg-[#2d2d2d]" key={index}>
                     <div className="w-full">
                         <div className=" h-[250px] overflow-hidden rounded-md relative"></div>
                         <h1 className="text-md mt-1 line-clamp-1"></h1>
