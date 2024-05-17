@@ -19,8 +19,8 @@ export default function Phimbo() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get(`https://phimapi.com/v1/api/danh-sach/phim-bo?page=${page}`);
-                setData(result.data.items);
+                const result = await apiService.get(`https://apii.online/apii/danh-sach?type=series&page=${page}`);
+                setData(result.items);
             } catch (err) {
                 console.error("Error fetching data:", err);
             } finally {
@@ -28,7 +28,7 @@ export default function Phimbo() {
             }
         };
         fetchData();
-    }, []);
+    }, [page]);
 
     function handleDesc() {
         setPage(page - 1);

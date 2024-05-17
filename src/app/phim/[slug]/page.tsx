@@ -22,7 +22,7 @@ export default function Phim({ params }: { params: { slug: string } }) {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get(`https://phimapi.com/phim/${slug}`);
+                const result = await apiService.get(`https://apii.online/apii/phim/${slug}`);
                 setData(result);
             } catch (err) {
                 console.error("Error fetching data:", err);
@@ -63,7 +63,7 @@ export default function Phim({ params }: { params: { slug: string } }) {
                                 <Link href="/">Trang chủ &gt;</Link>
                                 <Link href="#">Phim &gt;</Link>
                                 <Link href="#">{data.movie.name} &gt;</Link>
-                                {movie[uindex] ? <Link href="#">{movie[uindex].name} </Link> : <Link href="#">Tập 1 </Link>}
+                                {movie[uindex] ? <Link href="#">Tập {movie[uindex].name} </Link> : <Link href="#">Tập 1 </Link>}
                             </div>
                             {!click && (
                                 <div className="my-3 w-[100%] h-[300px] md:w-[1000px] md:h-[500px] relative">
@@ -79,28 +79,29 @@ export default function Phim({ params }: { params: { slug: string } }) {
                             <div className="px-5 md:px-0">
                                 <div className="">Server đang chọn: {data.episodes[0].server_name}</div>
                                 <div className="flex gap-5 justify-center">
-                                    <Button onClick={() => handleDesc()}>
+                                    <Button onClick={() => handleInc()}>
                                         <ChevronLeft />
                                         Tập trước đó
                                     </Button>
-                                    <Button onClick={() => handleInc()}>
+                                    <Button onClick={() => handleDesc()}>
                                         Tập tiếp theo <ChevronRight />
                                     </Button>
                                 </div>
                                 <div className="mt-5 relative">
-                                    <Image src={data.movie.thumb_url} alt="" fill className="absolute z-0 object-cover brightness-[.35]" />
-                                    <div className="flex gap-2 md:gap-5 z-10 relative">
-                                        <Image src={data.movie.poster_url} width={150} height={200} alt="" className="object-cover" />
+                                    <Image src={data.movie.thumb_url} alt="" fill className="absolute z-0 object-cover brightness-[.35] " />
+                                    <div className="flex gap-2 md:gap-5 z-10 relative p-5 md:p-0">
+                                        <Image src={data.movie.poster_url} width={150} height={200} alt="" className="object-cover hidden md:block" />
                                         <div className="py-2">
                                             <div className="">
-                                                <div className="flex gap-3 items-center flex-wrap">
+                                                <div className="flex gap-3 md:flex-row flex-wrap flex-col ">
+                                                    <h1 className="text-2xl">{data.movie.name}</h1>
+
                                                     <div className="flex gap-2">
                                                         <p className="bg-blue-600 px-2 py-1 rounded-md">{data.movie.quality}</p>
                                                         <p className="bg-blue-600 px-2 py-1 rounded-md">{data.movie.lang}</p>
                                                     </div>
-                                                    <h1 className="text-lg md:text-2xl">{data.movie.name}</h1>
                                                 </div>
-                                                <h1 className="text-md text-gray-300 mb-3">{data.movie.origin_name}</h1>
+                                                <h1 className="text-xl text-gray-300 mb-3">{data.movie.origin_name}</h1>
                                                 <div className="flex justify-between md:gap-5 flex-wrap">
                                                     <div className="text-gray-300 flex gap-3 flex-wrap flex-col">
                                                         <div className="flex flex-wrap items-center gap-2">
@@ -145,7 +146,7 @@ export default function Phim({ params }: { params: { slug: string } }) {
                                                 value={item.link_embed}
                                                 disabled={index == uindex && item.name != "Full" && item.name != "Tập 01"}
                                                 onClick={(e: any) => handleButton(e.target.value, index)}>
-                                                {item.name}
+                                                {`Tập ${item.name}`}
                                             </Button>
                                         ))}
                                     </div>

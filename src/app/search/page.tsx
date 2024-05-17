@@ -8,6 +8,7 @@ import CardData from "../component/carddata";
 import CardDataSkeleton from "../component/carddataskeleton";
 import { Input } from "@/components/ui/input";
 import apiService from "@/lib/apiservice";
+import CardDataAPI from "../component/carddataapi";
 
 export default function Search() {
     const [page, setPage] = useState(1);
@@ -41,8 +42,8 @@ export default function Search() {
             if (value) {
                 setLoading(true);
                 try {
-                    const result = await apiService.get(`https://phimapi.com/v1/api/tim-kiem?keyword=${value}&limit=7`);
-                    setResults(result.data.items);
+                    const result = await apiService.get(`https://apii.online/apii/danh-sach?page=1&search=${value}`);
+                    setResults(result.items);
                 } catch (error) {
                     console.error("Error fetching search results: ", error);
                 } finally {
@@ -58,10 +59,10 @@ export default function Search() {
     return (
         <div className="flex justify-center">
             <div className="w-[1000px]">
-                <div className="p-5">
+                <div className="md:p-0 p-5">
                     <Input type="text" placeholder="Nhập tên phim bạn muốn tìm..." className="mt-5 p-5 text-xl" onChange={(e) => handleText(e)} />
                 </div>
-                {results && <> {loading ? <CardDataSkeleton /> : <CardData data={results} />}</>}
+                {results && <> {loading ? <CardDataSkeleton /> : <CardDataAPI data={results} />}</>}
             </div>
         </div>
     );

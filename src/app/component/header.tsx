@@ -39,8 +39,8 @@ export default function Header() {
             if (value) {
                 setLoading(true);
                 try {
-                    const result = await apiService.get(`https://phimapi.com/v1/api/tim-kiem?keyword=${value}&limit=7`);
-                    setResults(result.data.items);
+                    const result = await apiService.get(`https://apii.online/apii/danh-sach?page=1&search=${value}`);
+                    setResults(result.items);
                 } catch (error) {
                     console.error("Error fetching search results: ", error);
                 } finally {
@@ -114,7 +114,7 @@ export default function Header() {
                                                                     {results.map((item: any, index) => (
                                                                         <li key={index} className="h-[80px] result-item flex gap-3 items-center hover:text-green-500 cursor-pointer group">
                                                                             <Image
-                                                                                src={`https://img.phimapi.com/${item.thumb_url}`}
+                                                                                src={`https://apii.online/image/${item.poster_url}`}
                                                                                 width={100}
                                                                                 height={100}
                                                                                 alt=""

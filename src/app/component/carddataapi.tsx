@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CardData(props: any) {
+export default function CardDataAPI(props: any) {
     const data = props.data;
     return (
         <div className="flex flex-wrap gap-3 items-center px-3 md:px-0">
