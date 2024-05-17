@@ -9,6 +9,7 @@ import CardData from "../component/carddata";
 import CardDataSkeleton from "../component/carddataskeleton";
 import PaginationControl from "../component/paginationcontrol";
 import apiService from "@/lib/apiservice";
+import CardDataAPI from "../component/carddataapi";
 
 export default function Phimle() {
     const [page, setPage] = useState(1);
@@ -19,8 +20,8 @@ export default function Phimle() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get(`https://phimapi.com/v1/api/danh-sach/phim-le?page=${page}`);
-                setData(result.data.items);
+                const result = await apiService.get(`https://apii.online/apii/danh-sach?type=single&page=${page}`);
+                setData(result.items);
             } catch (err) {
                 console.error("Error fetching data:", err);
             } finally {
@@ -28,7 +29,7 @@ export default function Phimle() {
             }
         };
         fetchData();
-    }, []);
+    }, [page]);
 
     function handleDesc() {
         setPage(page - 1);
@@ -44,7 +45,11 @@ export default function Phimle() {
     return (
         <div className="flex justify-center">
             <div className="w-[1000px]">
-                {loading ? <CardDataSkeleton /> : <CardData data={data} />}
+                <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
+                    <h1 className="text-2xl font-bold ml-3">PHIM CHIẾU RẠP ĐANG HOT</h1>
+                    <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
+                </div>
+                {loading ? <CardDataSkeleton /> : <CardDataAPI data={data} />}
 
                 <PaginationControl currentPage={page} onPageChange={handlePageChange} />
             </div>

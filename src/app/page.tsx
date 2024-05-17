@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import apiService from "@/lib/apiservice";
 import CardDataSkeleton from "./component/carddataskeleton";
 import CardDataAPI from "./component/carddataapi";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
     const [data, setData] = useState<any>([]);
@@ -19,7 +20,7 @@ export default function Home() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get("https://phimapi.com/danh-sach/phim-moi-cap-nhat?page=1");
+                const result = await apiService.get("https://apii.online/apii/danh-sach?year=2024&type=single&status=completed&page=1");
                 setData(result.items);
             } catch (err) {
                 console.error("Error fetching data:", err);
@@ -77,11 +78,14 @@ export default function Home() {
 
     const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center ">
             <div className="w-full md:w-[1000px]">
-                <div className="relative flex items-center my-3 px-3 md:px-0">
+                <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
                     <h1 className="text-2xl font-bold ml-3">PHIM SẮP RA MẮT</h1>
                     <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
+                    <Link href="/sapramat">
+                        <Button className="bg-green-600">Xem thêm</Button>
+                    </Link>
                 </div>
                 <Carousel plugins={[plugin.current]} className="w-full px-3" onMouseEnter={plugin.current.stop} onMouseLeave={plugin.current.reset}>
                     <CarouselContent>
@@ -105,12 +109,13 @@ export default function Home() {
                             </>
                         )}
                     </CarouselContent>
-                    <CarouselPrevious className="text-black hidden md:block" />
-                    <CarouselNext className="text-black  hidden md:block" />
                 </Carousel>
-                <div className="relative flex items-center my-3 px-3 md:px-0">
-                    <h1 className="text-2xl font-bold ml-3">PHIM MỚI CẬP NHÂT</h1>
+                <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
+                    <h1 className="text-2xl font-bold ml-3">PHIM CHIẾU RẠP MỚI NHẤT</h1>
                     <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
+                    <Link href="/moinhat">
+                        <Button className="bg-green-600">Xem thêm</Button>
+                    </Link>
                 </div>
                 <Carousel plugins={[plugin.current]} className="w-full px-3" onMouseEnter={plugin.current.stop} onMouseLeave={plugin.current.reset}>
                     <CarouselContent>
@@ -120,7 +125,7 @@ export default function Home() {
                                     <Link href={`phim/${item.slug}`} className="block">
                                         <div className="">
                                             <div className="w-[180px] h-[250px] overflow-hidden rounded-md relative ">
-                                                <Image src={item.poster_url} alt="" fill className="absolute hover:scale-125 duration-500" />
+                                                <Image src={`https://apii.online/image/${item.poster_url}`} alt="" fill className="absolute hover:scale-125 duration-500" />
                                             </div>
                                             <h1 className="text-md mt-1">{item.name}</h1>
                                             <p className="text-gray-500 text-[15px]">{item.year}</p>
@@ -134,22 +139,22 @@ export default function Home() {
                             </>
                         )}
                     </CarouselContent>
-                    <CarouselPrevious className="text-black hidden md:block" />
-                    <CarouselNext className="text-black  hidden md:block" />
                 </Carousel>
-                <div className="mt-5">
-                    <div className="relative flex items-center my-3 px-3 md:px-0">
-                        <h1 className="text-2xl font-bold ml-3">PHIM 2024</h1>
-                        <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
-                    </div>
+                <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
+                    <h1 className="text-2xl font-bold ml-3">PHIM 2024</h1>
+                    <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
+                    <Link href="/phimtrongnam">
+                        <Button className="bg-green-600">Xem thêm</Button>
+                    </Link>
                 </div>
                 {loading ? <CardDataSkeleton /> : <CardDataAPI data={dataYear} />}
 
-                <div className="mt-5">
-                    <div className="relative flex items-center my-3 px-3 md:px-0">
-                        <h1 className="text-2xl font-bold ml-3">PHIM VIỆT NAM</h1>
-                        <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
-                    </div>
+                <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
+                    <h1 className="text-2xl font-bold ml-3">PHIM VIỆT NAM</h1>
+                    <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
+                    <Link href="/phimvietnam">
+                        <Button className="bg-green-600">Xem thêm</Button>
+                    </Link>
                 </div>
                 {loading ? <CardDataSkeleton /> : <CardDataAPI data={dataVN} />}
             </div>

@@ -44,6 +44,10 @@ export default function TVShow() {
     return (
         <div className="flex justify-center">
             <div className="w-[1000px]">
+                <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
+                    <h1 className="text-2xl font-bold ml-3">PHIM TRUYỀN HÌNH</h1>
+                    <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
+                </div>
                 {loading ? <CardDataSkeleton /> : <CardData data={data} />}
 
                 <PaginationControl currentPage={page} onPageChange={handlePageChange} />

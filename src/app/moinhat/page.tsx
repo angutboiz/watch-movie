@@ -9,9 +9,8 @@ import CardData from "../component/carddata";
 import CardDataSkeleton from "../component/carddataskeleton";
 import PaginationControl from "../component/paginationcontrol";
 import apiService from "@/lib/apiservice";
-import CardDataAPI from "../component/carddataapi";
 
-export default function Phimbo() {
+export default function MoiNhat() {
     const [page, setPage] = useState(1);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,7 +19,7 @@ export default function Phimbo() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get(`https://apii.online/apii/danh-sach?type=series&page=${page}`);
+                const result = await apiService.get(`https://apii.online/apii/danh-sach?year=2024&type=single&status=completed&page=${page}`);
                 setData(result.items);
             } catch (err) {
                 console.error("Error fetching data:", err);
@@ -46,10 +45,10 @@ export default function Phimbo() {
         <div className="flex justify-center">
             <div className="w-[1000px]">
                 <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
-                    <h1 className="text-2xl font-bold ml-3">PHIM BỘ ĐANG HOT</h1>
+                    <h1 className="text-2xl font-bold ml-3">PHIM CHIẾU RẠP MỚI NHẤT</h1>
                     <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
                 </div>
-                {loading ? <CardDataSkeleton /> : <CardDataAPI data={data} />}
+                {loading ? <CardDataSkeleton /> : <CardData data={data} />}
 
                 <PaginationControl currentPage={page} onPageChange={handlePageChange} />
             </div>
