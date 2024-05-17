@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Search, Menu } from "lucide-react";
@@ -19,6 +19,8 @@ export default function Header() {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    const inputRef = useRef<HTMLInputElement>(null);
 
     function debounce(func: any, wait: any) {
         let timeout: any;
@@ -52,6 +54,13 @@ export default function Header() {
         }, 300),
         []
     );
+
+    const handleButtonClick = () => {
+        setHide(!hide);
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    };
 
     return (
         <div className="block h-[60px] text-white relative z-50">
@@ -101,7 +110,7 @@ export default function Header() {
                                     <>
                                         <li className=" w-[600px] relative">
                                             <form action="">
-                                                <Input type="text" placeholder="Nhập tên phim bạn muốn tìm..." className="" onChange={(e) => handleText(e)} />
+                                                <Input ref={inputRef} type="text" placeholder="Nhập tên phim bạn muốn tìm..." className="" onChange={(e) => handleText(e)} />
                                             </form>
                                             <div className="absolute w-[600px] bg-[#333333] mt-2 p-3 shadow-sm shadow-gray-500 ">
                                                 {loading ? (
@@ -143,13 +152,13 @@ export default function Header() {
                                 {hide ? (
                                     <>
                                         {" "}
-                                        <li onClick={() => setHide(!hide)} className=" px-5 py-2">
+                                        <li onClick={() => handleButtonClick()} className=" px-5 py-2">
                                             <Button className="bg-orange-500">Huỷ</Button>
                                         </li>
                                     </>
                                 ) : (
                                     <>
-                                        <li onClick={() => setHide(!hide)} className="block px-5 py-3">
+                                        <li onClick={() => handleButtonClick()} className="block px-5 py-3">
                                             <Search size={20}></Search>
                                         </li>
                                     </>
