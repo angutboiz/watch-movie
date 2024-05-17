@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
+import { Pacifico } from "next/font/google";
 import {
     Sheet,
     SheetContent,
@@ -14,6 +14,8 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
+
+const pacifico = Pacifico({ subsets: ["latin"], weight: "400" });
 
 export default function Header() {
     const pathname = usePathname();
@@ -29,9 +31,14 @@ export default function Header() {
             <div className="fixed w-full ">
                 <div className="md:flex justify-center bg-[#333333] p-3 md:p-0">
                     <div className="md:w-[1000px] flex gap-5 justify-between items-center">
-                        <div className="text-3xl">
-                            <a href="/">Watch Movie</a>
-                        </div>
+                        <Link href="/" className={pacifico.className}>
+                            <div className="text-3xl flex gap-1">
+                                <h1 className="text-green-500">Cà </h1>
+                                <h1 className="text-yellow-400 font-bold">
+                                    Phim{" "}
+                                </h1>
+                            </div>
+                        </Link>
                         <div className="hidden md:block">
                             <ul className="flex items-center gap-5">
                                 {hide ? (
