@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://example.com
+Host: https://caphim.vercel.app/
 
 # Sitemaps
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://caphim.vercel.app/sitemap.xml
