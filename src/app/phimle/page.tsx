@@ -20,7 +20,7 @@ export default function Phimle() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get(`https://apii.online/apii/danh-sach?type=single&page=${page}`);
+                const result = await apiService.get(`https://apii.online/apii/danh-sach?type=single&page=${page}&limit=25`);
                 setData(result.items);
             } catch (err) {
                 console.error("Error fetching data:", err);

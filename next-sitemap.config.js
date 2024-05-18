@@ -2,5 +2,8 @@
 module.exports = {
     siteUrl: process.env.SITE_URL || "https://caphim.vercel.app/",
     generateRobotsTxt: true, // (optional)
-    // ...other options
+    exclude: ["/sitemap.xml"], // <= exclude here
+    robotsTxtOptions: {
+        additionalSitemaps: ["https://caphim.vercel.app/sitemap.xml"],
+    },
 };
