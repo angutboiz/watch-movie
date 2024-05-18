@@ -36,7 +36,7 @@ export default function RootLayout({
                 <meta property="og:url" content="https://caphim.vercel.app/" />
                 <meta property="og:site_name" content="Cà Phim - Nền tảng coi phim trực không quảng cáo" />
                 <meta property="og:updated_time" content="2024-05-18T09:13:39+07:00" />
-                <meta property="og:image" content="thumbnail.jpg" />
+                <meta property="og:image" content="https://github.com/angutboiz/watch-movie/blob/main/src/app/thumbnail.jpg?raw=true" />
                 <meta property="og:image:width" content="940" />
                 <meta property="og:image:height" content="788" />
                 <meta property="og:image:alt" content="Cà Phim - Nền tảng coi phim trực không quảng cáo" />
