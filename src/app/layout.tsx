@@ -18,6 +18,7 @@ export default function RootLayout({
         <html lang="en">
             <head>
                 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+                <meta name="google-site-verification" content="tfiONyWKY2zp-h4G3Vopnhpb-xdoAttC_29nYNlzD6k" />
                 <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
                 <meta name="google-site-verification" content="CHsqH1AurGSgE3fcLmEYeeawL8BLrJSOQEsHSzcYpZ0" />
                 <meta httpEquiv="content-language" content="vi" /> <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport" />
