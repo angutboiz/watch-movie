@@ -1,3 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://caphim.vercel.app</loc>
+    <lastmod>2024-05-20T15:02:24.021Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1</priority>
+  </url>
+  <url>
+    <loc>https://caphim.vercel.app/phimbo</loc>
+    <lastmod>2024-05-20T15:02:24.021Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://caphim.vercel.app/phimle</loc>
+    <lastmod>2024-05-20T15:02:24.021Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://caphim.vercel.app/tvshow</loc>
+    <lastmod>2024-05-20T15:02:24.021Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://caphim.vercel.app/hoathinh</loc>
+    <lastmod>2024-05-20T15:02:24.021Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
