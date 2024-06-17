@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import type { Metadata } from "next";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -26,6 +25,7 @@ export default function Phim({ params }: { params: { slug: string } }) {
                 setLoading(true);
                 const result = await apiService.get(`https://apii.online/apii/phim/${slug}`);
                 setData(result);
+                document.title = "Cà Phim - " + result.movie?.name;
             } catch (err) {
                 console.error("Error fetching data:", err);
             } finally {
@@ -73,7 +73,7 @@ export default function Phim({ params }: { params: { slug: string } }) {
                             </div>
                             {!click && (
                                 <div className="my-3 w-[100%] h-[300px] md:w-[1000px] md:h-[500px] relative">
-                                    <Image src={data.movie?.poster_url} alt="" fill className="absolute object-cover" />
+                                    <Image src={data.movie?.poster_url} alt={data.movie?.name} fill className="absolute object-cover" />
                                     <div className="absolute w-full h-full flex justify-center items-center cursor-pointer" onClick={() => handleButton(data.episodes[0].server_data[0].link_embed, 0)}>
                                         <Play className="w-[50px] h-[50px] bg-[#ea580c] rounded-full p-2" />
                                     </div>
@@ -83,7 +83,7 @@ export default function Phim({ params }: { params: { slug: string } }) {
                                 {movie[uindex] && <iframe src={movie[uindex].link_embed} allowFullScreen allow="autoplay" className="w-[100%] h-[300px] md:w-[1000px] md:h-[500px]" />}
                             </div>
                             <div className="px-5 md:px-0">
-                                {data && Object.keys(data.episodes).length > 0 && <div className="">Server đang chọn: {data.episodes[0].server_name}</div>}
+                                {data && Object.keys(data.episodes).length > 0 && <p className="">Server đang chọn: {data.episodes[0].server_name}</p>}
 
                                 <div className="flex gap-5 justify-center">
                                     <Button onClick={() => handleInc()}>
@@ -95,9 +95,9 @@ export default function Phim({ params }: { params: { slug: string } }) {
                                     </Button>
                                 </div>
                                 <div className="mt-5 relative">
-                                    <Image src={data.movie?.thumb_url} alt="" fill className="absolute z-0 object-cover brightness-[.35] " />
+                                    <Image src={data.movie?.thumb_url} alt={data.movie?.name} fill className="absolute z-0 object-cover brightness-[.35] " />
                                     <div className="flex gap-2 md:gap-5 z-10 relative p-5 md:p-0">
-                                        <Image src={data.movie?.poster_url} width={150} height={200} alt="" className="object-cover hidden md:block" />
+                                        <Image src={data.movie?.poster_url} width={150} height={200} alt={data.movie?.name} className="object-cover hidden md:block" />
                                         <div className="py-2">
                                             <div className="">
                                                 <div className="flex gap-3 md:flex-row flex-wrap flex-col ">
