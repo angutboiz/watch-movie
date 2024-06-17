@@ -20,7 +20,7 @@ export default function HoatHinh() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get(`https://apii.online/apii/danh-sach?type=hoathinh&page=${page}&limit=25`);
+                const result = await apiService.get(`https://apii.online/apii/danh-sach?type=hoathinh&status=ongoing&page=${page}&limit=25`);
                 setData(result.items);
             } catch (err) {
                 console.error("Error fetching data:", err);

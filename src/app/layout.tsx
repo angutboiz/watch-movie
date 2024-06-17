@@ -25,10 +25,10 @@ export default function RootLayout({
                 <meta name="description" content="Phim Mới chất lượng cao miễn phí. Xem phim hd VietSub. Phim thuyết minh chất lượng HD. Kho phi mới chuẩn nhanh online hay hấp dẫn." />{" "}
                 <meta property="og:locale" content="vi_VN" />
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="Phim Mới | Phim HD | Phim VietSub |" />
+                <meta property="og:title" content="Cà Phim | Phim mới | Full Vietsub" />
                 <meta
                     name="keywords"
-                    content="Phim Trung Quốc, Phim Hàn Quốc, Phim chiếu rạp, Phim hành động, Phim kinh di, Phim hài, Phim hoạt hình, Phim Mỹ, Phim Võ Thuật, Phim bộ hay nhất, Xem phim Online, xem phim online tại caphim.vercel.app, caphim, cà phim, caphim, ca phim, xem phim hai tai caphim, doraemon caphim, phimmoi caphim, phim mới tại cà phim, phim chiếu rạp tại cà phim, phim lẻ cà phim, phim le caphim, phim bo ca phim, phim bộ tại cà phim, xem phim nhanh không quảng cáo, xem phim khong quang cao tai caphim"
+                    content="Phim Trung Quốc, Phim Hàn Quốc, Phim chiếu rạp, Phim hành động, Phim kinh di, Phim hài, Phim hoạt hình, Phim Mỹ, Phim Võ Thuật, Phim bộ hay nhất, Xem phim Online, xem phim online tại caphim.vercel.app,caphim vercel, caphim, cà phim, caphim, ca phim, xem phim hai tai caphim, doraemon caphim, phimmoi caphim, phim mới tại cà phim, phim chiếu rạp tại cà phim, phim lẻ cà phim, phim le caphim, phim bo ca phim, phim bộ tại cà phim, xem phim nhanh không quảng cáo, xem phim khong quang cao tai caphim"
                 />
                 <meta
                     property="og:description"

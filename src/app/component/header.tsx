@@ -41,7 +41,7 @@ export default function Header() {
             if (value) {
                 setLoading(true);
                 try {
-                    const result = await apiService.get(`https://apii.online/apii/danh-sach?page=1&search=${value}`);
+                    const result = await apiService.get(`https://apii.online/apii/danh-sach?page=1&limit=7&search=${value}`);
                     setResults(result.items);
                 } catch (error) {
                     console.error("Error fetching search results: ", error);

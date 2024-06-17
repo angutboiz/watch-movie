@@ -66,8 +66,9 @@ export default function Home() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get("https://apii.online/apii/danh-sach?year=2024&category=hoat-hinh&page=1&limit=20");
+                const result = await apiService.get("https://apii.online/apii/danh-sach?year=2024&type=hoathinh&status=ongoing&page=1 q     ");
                 setDataSoon(result.items);
+                console.table(result.items);
             } catch (err) {
                 console.error("Error fetching data:", err);
             } finally {
