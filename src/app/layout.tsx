@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./component/header";
-
+import Footer from "./component/footer";
 const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
-    title: "Phim Mới | Phim HD | Phim VietSub |",
-    description: "Trang web xem mọi phim trực tuyến free không quảng cáo",
+    title: "Cà Phim | Caphim | Phim VietSub",
+    description: "Caphim - Trang web xem mọi phim trực tuyến không quảng cáo",
 };
 
 export default function RootLayout({
@@ -28,11 +29,11 @@ export default function RootLayout({
                 <meta property="og:title" content="Cà Phim | Phim mới | Full Vietsub" />
                 <meta
                     name="keywords"
-                    content="Phim Trung Quốc, Phim Hàn Quốc, Phim chiếu rạp, Phim hành động, Phim kinh di, Phim hài, Phim hoạt hình, Phim Mỹ, Phim Võ Thuật, Phim bộ hay nhất, Xem phim Online, xem phim online tại caphim.vercel.app,caphim vercel, caphim, cà phim, caphim, ca phim, xem phim hai tai caphim, doraemon caphim, phimmoi caphim, phim mới tại cà phim, phim chiếu rạp tại cà phim, phim lẻ cà phim, phim le caphim, phim bo ca phim, phim bộ tại cà phim, xem phim nhanh không quảng cáo, xem phim khong quang cao tai caphim"
+                    content="Phim Trung Quốc, Phim Hàn Quốc, Phim chiếu rạp, Phim hành động, Phim kinh di, Phim hài, Phim hoạt hình, Phim Mỹ, Phim Võ Thuật, Phim bộ hay nhất, Xem phim Online, xem phim online tại caphim.vercel.app,caphim vercel, caphim, cà phim, caphim, ca phim, xem phim hai tai caphim, doraemon caphim, phimmoi caphim, phim mới tại cà phim, phim chiếu rạp tại cà phim, phim lẻ cà phim, phim le caphim, phim bo ca phim, phim bộ tại cà phim, xem phim nhanh không quảng cáo, xem phim khong quang cao tai caphim, cspham, caphimm, cà film"
                 />
                 <meta
                     property="og:description"
-                    content="Phim Mới chất lượng cao miễn phí, không quảng cáo. Xem phim hd VietSub. Phim thuyết minh chất lượng HD. Kho phim mới chuẩn nhanh online hay hấp dẫn tại caphim"
+                    content="Phim Mới chất lượng cao miễn phí, không quảng cáo. Caphim - Phim thuyết minh chất lượng HD - Kho phim mới chuẩn nhanh online hay hấp dẫn tại caphim"
                 />
                 <meta property="og:url" content="https://caphim.vercel.app/" />
                 <meta property="og:site_name" content="Cà Phim - Nền tảng coi phim trực không quảng cáo" />
@@ -48,6 +49,7 @@ export default function RootLayout({
                 <Header />
 
                 <div className="text-white ">{children}</div>
+                <Footer />
             </body>
         </html>
     );

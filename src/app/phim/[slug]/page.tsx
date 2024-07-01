@@ -86,11 +86,11 @@ export default function Phim({ params }: { params: { slug: string } }) {
                                 {data && Object.keys(data.episodes).length > 0 && <p className="">Server đang chọn: {data.episodes[0].server_name}</p>}
 
                                 <div className="flex gap-5 justify-center">
-                                    <Button onClick={() => handleInc()}>
+                                    <Button onClick={() => handleDesc()}>
                                         <ChevronLeft />
                                         Tập trước đó
                                     </Button>
-                                    <Button onClick={() => handleDesc()}>
+                                    <Button onClick={() => handleInc()}>
                                         Tập tiếp theo <ChevronRight />
                                     </Button>
                                 </div>
