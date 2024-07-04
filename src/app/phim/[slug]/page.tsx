@@ -17,6 +17,9 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
         title: movie.movie?.name,
         description: movie.movie?.content,
         openGraph: {
+            title: movie.movie?.name,
+            description: movie.movie?.content,
+            type: "website",
             images: movie.movie?.thumb_url,
         },
     };
