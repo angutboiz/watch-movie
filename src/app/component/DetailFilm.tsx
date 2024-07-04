@@ -48,7 +48,13 @@ export default function DetailFilm({ data }: { data: any }) {
                             </div>
                             {!click && (
                                 <div className="my-3 w-[100%] h-[300px] md:w-[1000px] md:h-[500px] relative">
-                                    <Image src={data.movie?.poster_url} alt={data.movie?.name} fill className="absolute object-cover" />
+                                    <Image
+                                        src={data.movie?.poster_url}
+                                        alt={data.movie?.name}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        className="absolute object-cover"
+                                    />
                                     <div className="absolute w-full h-full flex justify-center items-center cursor-pointer" onClick={() => handleButton(data.episodes[0].server_data[0].link_embed, 0)}>
                                         <Play className="w-[50px] h-[50px] bg-[#ea580c] rounded-full p-2" />
                                     </div>
@@ -70,7 +76,13 @@ export default function DetailFilm({ data }: { data: any }) {
                                     </Button>
                                 </div>
                                 <div className="mt-5 relative">
-                                    <Image src={data.movie?.thumb_url} alt={data.movie?.name} fill className="absolute z-0 object-cover brightness-[.35] " />
+                                    <Image
+                                        src={data.movie?.thumb_url}
+                                        alt={data.movie?.name}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        className="absolute z-0 object-cover brightness-[.35] "
+                                    />
                                     <div className="flex gap-2 md:gap-5 z-10 relative p-5 md:p-0">
                                         <Image src={data.movie?.poster_url} width={150} height={200} alt={data.movie?.name} className="object-cover hidden md:block" />
                                         <div className="py-2">
