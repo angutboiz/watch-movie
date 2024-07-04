@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
             description: movie.movie?.content,
             type: "website",
             images: movie.movie?.thumb_url,
+            url: "https://caphim.vercel.app/phim/" + slug,
         },
     };
 }
