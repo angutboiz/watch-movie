@@ -66,7 +66,7 @@ export default function Home() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get("https://apii.online/apii/danh-sach?year=2024&type=hoathinh&status=ongoing&page=1 q     ");
+                const result = await apiService.get("https://apii.online/apii/danh-sach?year=2024&type=hoathinh&status=ongoing&page=1");
                 setDataSoon(result.items);
                 console.table(result.items);
             } catch (err) {
@@ -112,7 +112,7 @@ export default function Home() {
                                     <Link href={`phim/${item.slug}`} className="block">
                                         <div className="">
                                             <div className="w-[180px] h-[250px] overflow-hidden rounded-md relative ">
-                                                <Image src={`https://apii.online/image/${item.poster_url}`} alt={item.name} fill className="absolute hover:scale-125 duration-500 object-cover" />
+                                                <Image src={`${item.poster_url}`} alt={item.name} fill className="absolute hover:scale-125 duration-500 object-cover" />
                                             </div>
                                             <h1 className="text-md mt-1 line-clamp-1">{item.name}</h1>
                                             <p className="text-gray-500 text-[15px] line-clamp-1">{item.origin_name}</p>
@@ -143,7 +143,7 @@ export default function Home() {
                                     <Link href={`phim/${item.slug}`} className="block">
                                         <div className="">
                                             <div className="w-[180px] h-[250px] overflow-hidden rounded-md relative ">
-                                                <Image src={`https://apii.online/image/${item.poster_url}`} alt={item.name} fill className="absolute hover:scale-125 duration-500 object-cover" />
+                                                <Image src={`${item.poster_url}`} alt={item.name} fill className="absolute hover:scale-125 duration-500 object-cover" />
                                             </div>
                                             <h1 className="text-md mt-1 line-clamp-1">{item.name}</h1>
                                             <p className="text-gray-500 text-[15px] line-clamp-1">{item.origin_name}</p>

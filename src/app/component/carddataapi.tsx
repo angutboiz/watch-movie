@@ -12,7 +12,7 @@ export default function CardDataAPI(props: any) {
                         <div className=" w-[100%] ">
                             <div className="h-[250px] overflow-hidden rounded-md relative">
                                 <Image
-                                    src={`https://apii.online/image/${item.poster_url}`}
+                                    src={`${item.poster_url}`}
                                     alt={item.name}
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

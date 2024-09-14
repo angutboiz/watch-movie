@@ -12,7 +12,7 @@ export default function CardData(props: any) {
                         <div className=" w-[100%] ">
                             <div className="h-[250px] overflow-hidden rounded-md relative">
                                 <Image
-                                    src={`https://img.phimapi.com/${item.poster_url}`}
+                                    src={`${item.poster_url}`}
                                     alt=""
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

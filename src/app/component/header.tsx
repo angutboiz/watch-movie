@@ -122,13 +122,7 @@ export default function Header() {
                                                                 <ul className="results-list flex flex-col">
                                                                     {results.map((item: any, index) => (
                                                                         <li key={index} className="h-[80px] result-item flex gap-3 items-center hover:text-green-500 cursor-pointer group">
-                                                                            <Image
-                                                                                src={`https://apii.online/image/${item.poster_url}`}
-                                                                                width={100}
-                                                                                height={100}
-                                                                                alt=""
-                                                                                className="object-cover rounded-md "
-                                                                            />
+                                                                            <Image src={`${item.poster_url}`} width={100} height={100} alt="" className="object-cover rounded-md " />
                                                                             <a href={`/phim/${item.slug}`} className="result-link ">
                                                                                 <p className="line-clamp-1">{item.name}</p>
                                                                                 <p className="text-sm text-gray-500 group-hover:text-green-200 line-clamp-1">{item.origin_name}</p>

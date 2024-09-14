@@ -55,6 +55,7 @@ export default function Search() {
         }, 300),
         []
     );
+    console.log(results);
 
     return (
         <div className="flex justify-center">
