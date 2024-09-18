@@ -51,7 +51,7 @@ export default function Header() {
             } else {
                 setResults([]);
             }
-        }, 300),
+        }, 100),
         []
     );
 
@@ -95,13 +95,13 @@ export default function Header() {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="/tvshow" className={`${pathname === "/tvshow" ? "bg-orange-600" : ""} block px-5 py-3`}>
-                                                TV show
+                                            <Link href="/hoathinh" className={`${pathname === "/hoathinh" ? "bg-orange-600" : ""} block px-5 py-3`}>
+                                                Hoạt hình
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="/hoathinh" className={`${pathname === "/hoathinh" ? "bg-orange-600" : ""} block px-5 py-3`}>
-                                                Hoạt hình
+                                            <Link href="/history" className={`${pathname === "/history" ? "bg-orange-600" : ""} block px-5 py-3`}>
+                                                Lịch sử
                                             </Link>
                                         </li>
                                     </>
@@ -110,9 +110,9 @@ export default function Header() {
                                     <>
                                         <li className=" w-[600px] relative">
                                             <form action="">
-                                                <Input ref={inputRef} type="text" placeholder="Nhập tên phim bạn muốn tìm..." className="" onChange={(e) => handleText(e)} />
+                                                <Input ref={inputRef} autoFocus type="text" placeholder="Nhập tên phim bạn muốn tìm..." className="" onChange={(e) => handleText(e)} />
                                             </form>
-                                            <div className="absolute w-[600px] bg-[#333333] mt-2 p-3 shadow-sm shadow-gray-500 ">
+                                            <div className="absolute w-[600px] bg-[#333333] mt-2 p-3 shadow-sm shadow-gray-500 rounded-md">
                                                 {loading ? (
                                                     <p>Đang tìm kiếm...</p>
                                                 ) : (
@@ -122,8 +122,15 @@ export default function Header() {
                                                                 <ul className="results-list flex flex-col">
                                                                     {results.map((item: any, index) => (
                                                                         <li key={index} className="h-[80px] result-item flex gap-3 items-center hover:text-green-500 cursor-pointer group">
-                                                                            <Image src={`${item.poster_url}`} width={100} height={100} alt="" className="object-cover rounded-md " />
-                                                                            <a href={`/phim/${item.slug}`} className="result-link ">
+                                                                            <div className="w-[20%] h-[65px] overflow-hidden rounded-md relative ">
+                                                                                <Image
+                                                                                    src={`${item.thumb_url}`}
+                                                                                    alt={item.name}
+                                                                                    fill
+                                                                                    className="absolute group-hover:scale-125 duration-500 object-cover"
+                                                                                />
+                                                                            </div>
+                                                                            <a href={`/phim/${item.slug}`} className="result-link flex-1">
                                                                                 <p className="line-clamp-1">{item.name}</p>
                                                                                 <p className="text-sm text-gray-500 group-hover:text-green-200 line-clamp-1">{item.origin_name}</p>
                                                                                 <p className="text-sm text-gray-500 group-hover:text-green-200">{item.year}</p>
@@ -188,13 +195,13 @@ export default function Header() {
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/tvshow" className={`${pathname === "/tvshow" ? "bg-orange-600" : ""} block px-5 py-3`}>
-                                                    TV show
+                                                <Link href="/hoathinh" className={`${pathname === "/hoathinh" ? "bg-orange-600" : ""} block px-5 py-3`}>
+                                                    Hoạt hình
                                                 </Link>
                                             </li>
                                             <li>
-                                                <Link href="/hoathinh" className={`${pathname === "/hoathinh" ? "bg-orange-600" : ""} block px-5 py-3`}>
-                                                    Hoạt hình
+                                                <Link href="/history" className={`${pathname === "/history" ? "bg-orange-600" : ""} block px-5 py-3`}>
+                                                    Lịch sử
                                                 </Link>
                                             </li>
                                         </ul>

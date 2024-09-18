@@ -12,14 +12,45 @@ export default function DetailFilm({ data }: { data: any }) {
     const [uindex, setuIndex] = useState(0);
     const [click, setClick] = useState(false);
 
-    console.log(data);
-
     function handleButton(value: any, index: any) {
         setMovie(data.episodes[0].server_data);
         setuIndex(index);
         setClick(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
+
+    interface Movie {
+        _id: string;
+        slug: string;
+        // Thêm các trường khác nếu cần
+    }
+
+    interface Data {
+        movie: Movie;
+    }
+
+    useEffect(() => {
+        const saveMovieToHistory = () => {
+            const historyString = localStorage.getItem("history");
+            const newHis = {
+                _id: data.movie._id,
+                name: data.movie.name,
+                slug: data.movie.slug,
+                origin_name: data.movie.origin_name,
+                year: data.movie.year,
+                thumb_url: data.movie.thumb_url,
+                time: Date.now(),
+            };
+            const history: Movie[] = historyString ? JSON.parse(historyString) : [];
+            const isMovieExist = history.some((item) => item._id === data.movie._id);
+            if (!isMovieExist) {
+                history.push(newHis);
+                localStorage.setItem("history", JSON.stringify(history));
+            }
+        };
+
+        saveMovieToHistory();
+    }, [data]);
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -77,7 +108,7 @@ export default function DetailFilm({ data }: { data: any }) {
                                 </div>
                                 <div className="mt-5 relative">
                                     <Image
-                                        src={data.movie?.thumb_url}
+                                        src={data.movie?.poster_url}
                                         alt={data.movie?.name}
                                         fill
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
