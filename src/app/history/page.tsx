@@ -7,7 +7,10 @@ import CardDataSkeleton from "../component/carddataskeleton";
 import CardDataAPI from "../component/carddataapi";
 
 export default function History() {
-    const data = JSON.parse(window.localStorage.getItem("history") || "[]");
+    var data = [];
+    if (global?.window !== undefined) {
+        data = JSON.parse(window.localStorage.getItem("history") || "[]");
+    }
     const sort = data.sort((a: any, b: any) => b.time - a.time);
     return (
         <div className="flex justify-center">

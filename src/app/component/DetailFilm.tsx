@@ -31,21 +31,23 @@ export default function DetailFilm({ data }: { data: any }) {
 
     useEffect(() => {
         const saveMovieToHistory = () => {
-            const historyString = window.localStorage.getItem("history");
-            const newHis = {
-                _id: data.movie._id,
-                name: data.movie.name,
-                slug: data.movie.slug,
-                origin_name: data.movie.origin_name,
-                year: data.movie.year,
-                thumb_url: data.movie.thumb_url,
-                time: Date.now(),
-            };
-            const history: Movie[] = historyString ? JSON.parse(historyString) : [];
-            const isMovieExist = history.some((item) => item._id === data.movie._id);
-            if (!isMovieExist) {
-                history.push(newHis);
-                window.localStorage.setItem("history", JSON.stringify(history));
+            if (global?.window !== undefined) {
+                const historyString = window.localStorage.getItem("history");
+                const newHis = {
+                    _id: data.movie._id,
+                    name: data.movie.name,
+                    slug: data.movie.slug,
+                    origin_name: data.movie.origin_name,
+                    year: data.movie.year,
+                    thumb_url: data.movie.thumb_url,
+                    time: Date.now(),
+                };
+                const history: Movie[] = historyString ? JSON.parse(historyString) : [];
+                const isMovieExist = history.some((item) => item._id === data.movie._id);
+                if (!isMovieExist) {
+                    history.push(newHis);
+                    window.localStorage.setItem("history", JSON.stringify(history));
+                }
             }
         };
 
