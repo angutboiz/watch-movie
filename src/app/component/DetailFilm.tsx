@@ -31,7 +31,7 @@ export default function DetailFilm({ data }: { data: any }) {
 
     useEffect(() => {
         const saveMovieToHistory = () => {
-            const historyString = localStorage.getItem("history");
+            const historyString = window.localStorage.getItem("history");
             const newHis = {
                 _id: data.movie._id,
                 name: data.movie.name,
@@ -45,7 +45,7 @@ export default function DetailFilm({ data }: { data: any }) {
             const isMovieExist = history.some((item) => item._id === data.movie._id);
             if (!isMovieExist) {
                 history.push(newHis);
-                localStorage.setItem("history", JSON.stringify(history));
+                window.localStorage.setItem("history", JSON.stringify(history));
             }
         };
 
