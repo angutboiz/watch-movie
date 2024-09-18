@@ -46,7 +46,7 @@ export default function History() {
                                     <p className="text-gray-500 text-[15px]">{item.year}</p>
                                 </div>
                                 <div className="hidden group-hover:block">
-                                    <div className=" absolute top-[-15px] right-[-15px] text-white bg-red-500 p-2 rounded-full" onClick={(e) => handleDelete(e, item._id)}>
+                                    <div className=" absolute top-[-15px] right-[-15px] text-white bg-red-500 p-2 rounded-full" onClick={(e: any) => handleDelete(e, item._id)}>
                                         <Trash size={20} />
                                     </div>
                                 </div>
