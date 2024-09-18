@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "./component/header";
 import Footer from "./component/footer";
 const inter = Inter({ subsets: ["latin"] });
-
+import { Analytics } from "@vercel/analytics/react";
 export const metadata: Metadata = {
     title: "Cà Phim | Caphim | Phim VietSub",
     description: "Caphim - Trang web xem mọi phim trực tuyến không quảng cáo",
@@ -47,7 +47,7 @@ export default function RootLayout({
             </head>
             <body className={inter.className} style={{ backgroundColor: "#09090b" }}>
                 <Header />
-
+                <Analytics />
                 <div className="text-white ">{children}</div>
                 <Footer />
             </body>
