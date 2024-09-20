@@ -28,5 +28,6 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 
 export default async function Phim({ params }: Props) {
     const movie = await apiService.get(`https://apii.online/apii/phim/${params.slug}`);
+    
     return <DetailFilm data={movie} />;
 }
