@@ -6,6 +6,7 @@ import Footer from "./component/footer";
 const inter = Inter({ subsets: ["latin"] });
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 export const metadata: Metadata = {
     title: "Cà Phim | Caphim | Phim VietSub",
     description: "Caphim - Trang web xem mọi phim trực tuyến không quảng cáo",
@@ -45,6 +46,7 @@ export default function RootLayout({
                 <meta property="og:image:alt" content="Cà Phim - Nền tảng coi phim trực không quảng cáo" />
                 <meta property="og:image:type" content="image/png" />
                 <meta property="article:published_time" content="2024-05-17T09:13:39+07:00" />
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6W835KBQ3"></Script>
             </head>
             <body className={inter.className} style={{ backgroundColor: "#09090b" }}>
                 <Header />
