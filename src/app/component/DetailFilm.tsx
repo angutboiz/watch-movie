@@ -10,19 +10,23 @@ import Link from "next/link";
 export default function DetailFilm({ data }: { data: any }) {
     const [movie, setMovie] = useState<any>([]);
     const [uindex, setuIndex] = useState(0);
+    const [server, setServer] = useState(0);
     const [click, setClick] = useState(false);
 
     function handleButton(value: any, index: any) {
-        setMovie(data.episodes[0].server_data);
+        setMovie(data.episodes[server].server_data);
         setuIndex(index);
         setClick(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    const handleChangeServer = (index: number) => {
+        setServer(index);
+    };
+
     interface Movie {
         _id: string;
         slug: string;
-        // Thêm các trường khác nếu cần
     }
 
     interface Data {
@@ -97,7 +101,16 @@ export default function DetailFilm({ data }: { data: any }) {
                                 {movie[uindex] && <iframe src={movie[uindex].link_embed} allowFullScreen allow="autoplay" className="w-[100%] h-[300px] md:w-[1000px] md:h-[500px]" />}
                             </div>
                             <div className="px-5 md:px-0">
-                                {data && Object.keys(data.episodes).length > 0 && <p className="">Server đang chọn: {data.episodes[0].server_name}</p>}
+                                {data && Object.keys(data.episodes).length > 0 && <p className="">Server đang chọn: {data.episodes[server].server_name}</p>}
+                                <div className="flex gap-5 items-center mb-5 mt-3">
+                                    {data &&
+                                        Object.keys(data.episodes).length > 0 &&
+                                        data.episodes.map((item: any, index: any) => (
+                                            <Button className="text-gray-300" key={index} onClick={() => handleChangeServer(index)} disabled={server == index}>
+                                                Server: {item.server_name}
+                                            </Button>
+                                        ))}
+                                </div>
 
                                 <div className="flex gap-5 justify-center">
                                     <Button onClick={() => handleDesc()}>
@@ -107,6 +120,24 @@ export default function DetailFilm({ data }: { data: any }) {
                                     <Button onClick={() => handleInc()}>
                                         Tập tiếp theo <ChevronRight />
                                     </Button>
+                                </div>
+
+                                <div className="my-5">
+                                    <h1>Các tập phim</h1>
+                                    <div className="flex flex-wrap gap-3 mt-3">
+                                        {data &&
+                                            Object.keys(data.episodes).length > 0 &&
+                                            [...data.episodes[server].server_data].reverse().map((item: any, index: any) => (
+                                                <Button
+                                                    className="flex-1"
+                                                    key={index}
+                                                    value={item.link_embed}
+                                                    disabled={index == data.episodes[0].server_data.length - 1 - uindex && item.name != "Full" && item.name != "Tập 01"}
+                                                    onClick={(e: any) => handleButton(e.target.value, data.episodes[0].server_data.length - 1 - index)}>
+                                                    {`Tập ${item.name}`}
+                                                </Button>
+                                            ))}
+                                    </div>
                                 </div>
                                 <div className="mt-5 relative">
                                     <Image
@@ -161,23 +192,6 @@ export default function DetailFilm({ data }: { data: any }) {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="my-5">
-                                    <h1>Các tập phim</h1>
-                                    <div className="flex flex-wrap gap-3 mt-3">
-                                        {data &&
-                                            Object.keys(data.episodes).length > 0 &&
-                                            data.episodes[0].server_data.map((item: any, index: any) => (
-                                                <Button
-                                                    className="flex-1"
-                                                    key={index}
-                                                    value={item.link_embed}
-                                                    disabled={index == uindex && item.name != "Full" && item.name != "Tập 01"}
-                                                    onClick={(e: any) => handleButton(e.target.value, index)}>
-                                                    {`Tập ${item.name}`}
-                                                </Button>
-                                            ))}
                                     </div>
                                 </div>
                                 <div className="">
