@@ -20,8 +20,7 @@ export default function CardDataAPI(props: any) {
                                 />
                             </div>
                             <h1 className="text-md mt-1 line-clamp-1">{item.name}</h1>
-                            <p className="text-gray-500 text-[15px] line-clamp-1">{item.origin_name}</p>
-                            <p className="text-gray-500 text-[15px]">{item.year}</p>
+                            <p className="text-gray-500 text-[15px] line-clamp-1">{item.original_name}</p>
                         </div>
                     </Link>
                 ))

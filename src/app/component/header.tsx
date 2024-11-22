@@ -41,7 +41,7 @@ export default function Header() {
             if (value) {
                 setLoading(true);
                 try {
-                    const result = await apiService.get(`https://apii.online/apii/danh-sach?page=1&limit=7&search=${value}`);
+                    const result = await apiService.get(`https://phim.nguonc.com/api/films/search?keyword=${value}`);
                     setResults(result.items);
                 } catch (error) {
                     console.error("Error fetching search results: ", error);
@@ -124,16 +124,17 @@ export default function Header() {
                                                                         <li key={index} className="h-[80px] result-item flex gap-3 items-center hover:text-green-500 cursor-pointer group">
                                                                             <div className="w-[20%] h-[65px] overflow-hidden rounded-md relative ">
                                                                                 <Image
-                                                                                    src={`${item.thumb_url}`}
+                                                                                    src={`${item.poster_url}`}
                                                                                     alt={item.name}
                                                                                     fill
                                                                                     className="absolute group-hover:scale-125 duration-500 object-cover"
+                                                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                                                 />
                                                                             </div>
                                                                             <a href={`/phim/${item.slug}`} className="result-link flex-1">
                                                                                 <p className="line-clamp-1">{item.name}</p>
-                                                                                <p className="text-sm text-gray-500 group-hover:text-green-200 line-clamp-1">{item.origin_name}</p>
-                                                                                <p className="text-sm text-gray-500 group-hover:text-green-200">{item.year}</p>
+                                                                                <p className="text-sm text-gray-500 group-hover:text-green-200 line-clamp-1">{item.original_name}</p>
+                                                                                <p className="text-sm text-gray-500 group-hover:text-green-200">{item.time}</p>
                                                                             </a>
                                                                         </li>
                                                                     ))}

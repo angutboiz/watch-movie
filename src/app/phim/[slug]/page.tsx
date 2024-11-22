@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
     const slug = params.slug;
 
     // fetch data
-    const movie = await apiService.get(`https://apii.online/apii/phim/${slug}`);
+    const movie = await apiService.get(`https://phim.nguonc.com/api/film/${slug}`);
     return {
         title: movie.movie?.name,
         description: movie.movie?.content,
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 }
 
 export default async function Phim({ params }: Props) {
-    const movie = await apiService.get(`https://apii.online/apii/phim/${params.slug}`);
-    
-    return <DetailFilm data={movie} />;
+    const movie = await apiService.get(`https://phim.nguonc.com/api/film/${params.slug}`);
+
+    return <DetailFilm data={movie.movie} />;
 }

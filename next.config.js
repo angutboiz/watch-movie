@@ -4,11 +4,11 @@ module.exports = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "img.phimapi.com",
+                hostname: "*",
             },
             {
-                protocol: "https",
-                hostname: "apii.online",
+                protocol: "http",
+                hostname: "*",
             },
         ],
     },

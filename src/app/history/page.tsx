@@ -42,8 +42,7 @@ export default function History() {
                                         />
                                     </div>
                                     <h1 className="text-md mt-1 line-clamp-1">{item.name}</h1>
-                                    <p className="text-gray-500 text-[15px] line-clamp-1">{item.origin_name}</p>
-                                    <p className="text-gray-500 text-[15px]">{item.year}</p>
+                                    <p className="text-gray-500 text-[15px] line-clamp-1">{item.original_name}</p>
                                 </div>
                                 <div className="hidden group-hover:block">
                                     <div className=" absolute top-[-15px] right-[-15px] text-white bg-red-500 p-2 rounded-full" onClick={(e: any) => handleDelete(e, item._id)}>

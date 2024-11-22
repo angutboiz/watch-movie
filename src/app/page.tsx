@@ -13,7 +13,6 @@ export default function Home() {
     const [data, setData] = useState<any>([]);
     const [dataYear, setDataYear] = useState<any>([]);
     const [dataVN, setDataVN] = useState<any>([]);
-    const [dataSoon, setDataSoon] = useState<any>([]);
     const [dataTQ, setDataTQ] = useState<any>([]);
     const [loading, setLoading] = useState(true);
 
@@ -21,8 +20,9 @@ export default function Home() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get("https://apii.online/apii/danh-sach?year=2024&type=single&status=completed&page=1&limit=50");
-                setData(result.items);
+                const result1 = await apiService.get("https://phim.nguonc.com/api/films/phim-moi-cap-nhat?page=1");
+                const result2 = await apiService.get("https://phim.nguonc.com/api/films/phim-moi-cap-nhat?page=2");
+                setData([...result1.items, ...result2.items]);
             } catch (err) {
                 console.error("Error fetching data:", err);
             } finally {
@@ -36,8 +36,9 @@ export default function Home() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get("https://apii.online/apii/danh-sach?year=2024&page=1&limit=10");
-                setDataYear(result.items);
+                const result1 = await apiService.get("https://phim.nguonc.com/api/films/nam-phat-hanh/2024?page=1");
+                const result2 = await apiService.get("https://phim.nguonc.com/api/films/nam-phat-hanh/2024?page=2");
+                setDataYear([...result1.items, ...result2.items]);
             } catch (err) {
                 console.error("Error fetching data:", err);
             } finally {
@@ -51,8 +52,9 @@ export default function Home() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get("https://apii.online/apii/danh-sach?country=viet-nam&page=1&limit=10");
-                setDataVN(result.items);
+                const result1 = await apiService.get("https://phim.nguonc.com/api/films/quoc-gia/viet-nam?page=1");
+                const result2 = await apiService.get("https://phim.nguonc.com/api/films/quoc-gia/viet-nam?page=2");
+                setDataVN([...result1.items, ...result2.items]);
             } catch (err) {
                 console.error("Error fetching data:", err);
             } finally {
@@ -66,23 +68,9 @@ export default function Home() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get("https://apii.online/apii/danh-sach?year=2024&type=hoathinh&status=ongoing&page=1");
-                setDataSoon(result.items);
-            } catch (err) {
-                console.error("Error fetching data:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                const result = await apiService.get("https://apii.online/apii/danh-sach?country=trung-quoc&page=1&limit=10");
-                setDataTQ(result.items);
+                const result1 = await apiService.get("https://phim.nguonc.com/api/films/quoc-gia/trung-quoc?page=1");
+                const result2 = await apiService.get("https://phim.nguonc.com/api/films/quoc-gia/trung-quoc?page=2");
+                setDataTQ([...result1.items, ...result2.items]);
             } catch (err) {
                 console.error("Error fetching data:", err);
             } finally {
@@ -95,38 +83,7 @@ export default function Home() {
     const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
     return (
         <div className="flex justify-center ">
-            <div className="w-full md:w-[1000px]">
-                <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
-                    <h1 className="text-2xl font-bold ml-3">PHIM HOẠT HÌNH 2024</h1>
-                    <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
-                    <Link href="/hoathinh">
-                        <Button className="bg-green-600">Xem thêm</Button>
-                    </Link>
-                </div>
-                <Carousel plugins={[plugin.current]} className="w-full px-3  md:px-0" onMouseEnter={plugin.current.stop} onMouseLeave={plugin.current.reset}>
-                    <CarouselContent>
-                        {dataSoon && Object.keys(dataSoon).length > 0 ? (
-                            dataSoon.map((item: any, index: any) => (
-                                <CarouselItem className="basis-1/2 md:basis-1/5 w-100" key={index}>
-                                    <Link href={`phim/${item.slug}`} className="block">
-                                        <div className="">
-                                            <div className="w-[180px] h-[250px] overflow-hidden rounded-md relative ">
-                                                <Image src={`${item.thumb_url}`} alt={item.name} fill className="absolute hover:scale-125 duration-500 object-cover" />
-                                            </div>
-                                            <h1 className="text-md mt-1 line-clamp-1">{item.name}</h1>
-                                            <p className="text-gray-500 text-[15px] line-clamp-1">{item.origin_name}</p>
-                                            <p className="text-gray-500 text-[15px]">{item.year}</p>
-                                        </div>
-                                    </Link>
-                                </CarouselItem>
-                            ))
-                        ) : (
-                            <>
-                                <CardDataSkeleton />
-                            </>
-                        )}
-                    </CarouselContent>
-                </Carousel>
+            <div className="flex flex-col gap-5 w-full md:w-[1000px]">
                 <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
                     <h1 className="text-2xl font-bold ml-3">PHIM CHIẾU RẠP MỚI NHẤT</h1>
                     <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
@@ -142,11 +99,16 @@ export default function Home() {
                                     <Link href={`phim/${item.slug}`} className="block">
                                         <div className="">
                                             <div className="w-[180px] h-[250px] overflow-hidden rounded-md relative ">
-                                                <Image src={`${item.thumb_url}`} alt={item.name} fill className="absolute hover:scale-125 duration-500 object-cover" />
+                                                <Image
+                                                    src={`${item.thumb_url}`}
+                                                    alt={item.name}
+                                                    fill
+                                                    className="absolute hover:scale-125 duration-500 object-cover"
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                />
                                             </div>
                                             <h1 className="text-md mt-1 line-clamp-1">{item.name}</h1>
-                                            <p className="text-gray-500 text-[15px] line-clamp-1">{item.origin_name}</p>
-                                            <p className="text-gray-500 text-[15px]">{item.year}</p>
+                                            <p className="text-gray-500 text-[15px] line-clamp-1">{item.original_name}</p>
                                         </div>
                                     </Link>
                                 </CarouselItem>
