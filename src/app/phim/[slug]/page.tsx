@@ -18,9 +18,9 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
         description: movie.movie?.content,
         openGraph: {
             title: movie.movie?.name,
-            description: movie.movie?.content,
+            description: movie.movie?.description,
             type: "website",
-            images: movie.movie?.thumb_url,
+            images: movie.movie?.poster_url,
             url: "https://caphim.vercel.app/phim/" + slug,
         },
     };
