@@ -1,6 +1,6 @@
 module.exports = {
     images: {
-        domains: ["apii.online"],
+        domains: ["phim.nguonc.com"],
         remotePatterns: [
             {
                 protocol: "https",

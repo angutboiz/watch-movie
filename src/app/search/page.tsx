@@ -42,7 +42,7 @@ export default function Search() {
             if (value) {
                 setLoading(true);
                 try {
-                    const result = await apiService.get(`https://apii.online/apii/danh-sach?page=1&search=${value}`);
+                    const result = await apiService.get(`https://phim.nguonc.com/api/films/search?keyword=${value}`);
                     setResults(result.items);
                 } catch (error) {
                     console.error("Error fetching search results: ", error);
@@ -55,7 +55,6 @@ export default function Search() {
         }, 300),
         []
     );
-    console.log(results);
 
     return (
         <div className="flex justify-center">
