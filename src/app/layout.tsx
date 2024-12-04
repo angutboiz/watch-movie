@@ -47,6 +47,7 @@ export default function RootLayout({
                 <meta property="og:image:type" content="image/png" />
                 <meta property="article:published_time" content="2024-05-17T09:13:39+07:00" />
                 <meta name="google-adsense-account" content="ca-pub-1321221780023409"></meta>
+                <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1321221780023409" crossOrigin="anonymous"></Script>
                 <Script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6W835KBQ3"></Script>
             </head>
             <body className={inter.className} style={{ backgroundColor: "#09090b" }}>
