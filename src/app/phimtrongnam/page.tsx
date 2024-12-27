@@ -20,7 +20,7 @@ export default function PhimTrongNam() {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const result = await apiService.get(`https://apii.online/apii/danh-sach?year=2024&page=${page}&limit=25`);
+                const result = await apiService.get(`https://phim.nguonc.com/api/films/nam-phat-hanh/2024?page=${page}&limit=25`);
                 setData(result.items);
             } catch (err) {
                 console.error("Error fetching data:", err);

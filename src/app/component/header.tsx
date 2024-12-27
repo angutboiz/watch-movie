@@ -100,6 +100,11 @@ export default function Header() {
                                             </Link>
                                         </li>
                                         <li>
+                                            <Link href="/timkiemnangcao" className={`${pathname === "/timkiemnangcao" ? "bg-orange-600" : ""} block px-5 py-3`}>
+                                                Nâng cao
+                                            </Link>
+                                        </li>
+                                        <li>
                                             <Link href="/history" className={`${pathname === "/history" ? "bg-orange-600" : ""} block px-5 py-3`}>
                                                 Lịch sử
                                             </Link>

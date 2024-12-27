@@ -85,7 +85,7 @@ export default function Home() {
         <div className="flex justify-center ">
             <div className="flex flex-col gap-5 w-full md:w-[1000px]">
                 <div className="relative flex items-center justify-between my-3 px-3 md:px-0">
-                    <h1 className="text-2xl font-bold ml-3">PHIM CHIẾU RẠP MỚI NHẤT</h1>
+                    <h1 className="text-2xl font-bold ml-3">PHIM MỚI CẬP NHẬT</h1>
                     <div className="absolute w-1 h-[2rem] bg-orange-500 top-0"></div>
                     <Link href="/phimle">
                         <Button className="bg-green-600">Xem thêm</Button>
